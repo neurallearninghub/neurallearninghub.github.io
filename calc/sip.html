@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Investment Returns Calculator</title>
+  <style>
+    body { font-family: Arial; margin: 40px; }
+    label, input { display: block; margin: 10px 0; }
+    button { margin-top: 15px; }
+    table { margin-top: 20px; border-collapse: collapse; width: 100%; }
+    th, td { padding: 8px 12px; border: 1px solid #ccc; text-align: right; }
+    th { background-color: #f0f0f0; }
+    .note { font-size: 0.9em; color: gray; margin-top: -8px; margin-bottom: 8px; }
+  </style>
+</head>
+<body>
+  <a href="https://neurallearninghub.in/calc/index.html">Back to all tools!</a>
+  <h2>Investment Returns Calculator</h2>
+
+  <label>
+    Monthly Investment Amount (₹):
+    <input type="number" id="monthlyInvestment" value="10000" oninput="updateAmountWords()">
+    <div id="amountWords" class="note"></div>
+  </label>
+
+  <label>
+    Step-up per Year (%):
+    <input type="number" id="stepUpPercent" value="10">
+  </label>
+
+  <label>
+    Expected Annual Return (%):
+    <input type="number" id="annualReturn" value="12">
+  </label>
+
+  <label>
+    Time Period (Years):
+    <input type="number" id="years" value="10">
+  </label>
+
+  <label>
+    Expected Annual Inflation Rate (%):
+    <input type="number" id="annualInflation" value="5">
+  </label>
+
+  <button onclick="calculateReturns()">Calculate</button>
+  <button onclick="exportCSV()">Export to CSV</button>
+
+  <h3 id="result"></h3>
+
+  <canvas id="chart" width="600" height="300"></canvas>
+
+  <table id="breakdownTable">
+    <thead>
+      <tr>
+        <th>Year</th>
+        <th>Monthly Invest (₹)</th>
+        <th>Yearly Invest (₹)</th>
+        <th>Cumulative Invested (₹)</th>
+        <th>Cumulative Value (₹)</th>
+        <th>Inflation-Adjusted Invested (₹)</th>
+        <th>Inflation-Adjusted Value (₹)</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <!-- Chart.js library -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    let breakdownData = [];
+
+    function formatNumber(num) {
+      return parseFloat(num).toLocaleString('en-IN', { maximumFractionDigits: 0 });
+    }
+
+    function updateAmountWords() {
+      const num = parseFloat(document.getElementById("monthlyInvestment").value);
+      const wordsDiv = document.getElementById("amountWords");
+      if (!isNaN(num) && num > 0) {
+        wordsDiv.textContent = `Amount is: ₹${formatNumber(num)}`;
+      } else {
+        wordsDiv.textContent = "";
+      }
+    }
+
+    function calculateReturns() {
+      const monthlyInvestment = parseFloat(document.getElementById("monthlyInvestment").value);
+      const stepUpPercent = parseFloat(document.getElementById("stepUpPercent").value);
+      const annualReturn = parseFloat(document.getElementById("annualReturn").value);
+      const years = parseInt(document.getElementById("years").value);
+      const annualInflation = parseFloat(document.getElementById("annualInflation").value);
+
+      const monthlyRate = annualReturn / 12 / 100;
+      let totalInvested = 0;
+      let totalValue = 0;
+
+      let yearLabels = [];
+      let investedValues = [];
+      let totalValues = [];
+
+      breakdownData = [];
+
+      const tableBody = document.querySelector("#breakdownTable tbody");
+      tableBody.innerHTML = "";
+
+      for (let year = 0; year < years; year++) {
+        let currentMonthly = monthlyInvestment * Math.pow(1 + stepUpPercent / 100, year);
+        let yearlyInvestment = 0;
+
+        for (let month = 0; month < 12; month++) {
+          totalInvested += currentMonthly;
+          yearlyInvestment += currentMonthly;
+          totalValue = (totalValue + currentMonthly) * (1 + monthlyRate);
+        }
+
+        const inflationFactor = Math.pow(1 + annualInflation / 100, year + 1);
+        const realInvested = totalInvested / inflationFactor;
+        const realTotalValue = totalValue / inflationFactor;
+
+        yearLabels.push(`Year ${year + 1}`);
+        investedValues.push(totalInvested);
+        totalValues.push(totalValue);
+
+        breakdownData.push({
+          year: year + 1,
+          monthlyInvestment: formatNumber(currentMonthly),
+          yearlyInvestment: formatNumber(yearlyInvestment),
+          cumulativeInvested: formatNumber(totalInvested),
+          cumulativeValue: formatNumber(totalValue),
+          realInvested: formatNumber(realInvested),
+          realTotalValue: formatNumber(realTotalValue)
+        });
+
+        let row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${year + 1}</td>
+          <td>${formatNumber(currentMonthly)}</td>
+          <td>${formatNumber(yearlyInvestment)}</td>
+          <td>${formatNumber(totalInvested)}</td>
+          <td>${formatNumber(totalValue)}</td>
+          <td>${formatNumber(realInvested)}</td>
+          <td>${formatNumber(realTotalValue)}</td>
+        `;
+        tableBody.appendChild(row);
+      }
+
+      document.getElementById("result").innerHTML =
+        `<strong>Total Invested:</strong> ₹${formatNumber(totalInvested)}<br>
+         <strong>Total Value (Nominal):</strong> ₹${formatNumber(totalValue)}`;
+
+      drawChart(yearLabels, investedValues, totalValues);
+    }
+
+    function drawChart(labels, invested, value) {
+      const ctx = document.getElementById("chart").getContext("2d");
+      if (window.myChart) window.myChart.destroy();
+      window.myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: labels,
+          datasets: [
+            {
+              label: 'Cumulative Invested (₹)',
+              data: invested,
+              backgroundColor: 'rgba(54, 162, 235, 0.7)',
+            },
+            {
+              label: 'Cumulative Value (₹)',
+              data: value,
+              backgroundColor: 'rgba(75, 192, 192, 0.7)',
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: {
+              beginAtZero: true,
+              title: {
+                display: true,
+                text: 'Amount (₹)'
+              }
+            }
+          }
+        }
+      });
+    }
+
+    function exportCSV() {
+      const headers = [
+        "Year",
+        "Monthly Investment (₹)",
+        "Yearly Investment (₹)",
+        "Cumulative Invested (₹)",
+        "Cumulative Value (₹)",
+        "Inflation-Adjusted Invested (₹)",
+        "Inflation-Adjusted Value (₹)"
+      ];
+
+      let csvContent = headers.join(",") + "\n";
+
+      breakdownData.forEach(row => {
+        const rowData = [
+          row.year,
+          row.monthlyInvestment,
+          row.yearlyInvestment,
+          row.cumulativeInvested,
+          row.cumulativeValue,
+          row.realInvested,
+          row.realTotalValue
+        ];
+        csvContent += rowData.join(",") + "\n";
+      });
+
+      const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+      const link = document.createElement("a");
+      const url = URL.createObjectURL(blob);
+      link.setAttribute("href", url);
+      link.setAttribute("download", "investment_breakdown.csv");
+      link.style.visibility = "hidden";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+  </script>
+
+</body>
+</html>
+

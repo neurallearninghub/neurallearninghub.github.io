@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neural Learning Hub</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        :root {
+            --bs-primary: #1098b6 !important;
+            --bs-secondary: #ffffff !important;
+            --bs-tertiary: #D98471 !important;
+            --bs-noshow: #ffffff !important;
+        }
+        
+        /* Ensure buttons and other elements use the new colors */
+        .btn-primary {
+            background-color: var(--bs-primary) !important;
+            border-color: var(--bs-primary) !important;
+        }
+        
+        .btn-primary:hover {
+            background-color: #0e7a91 !important;
+            border-color: #0e7a91 !important;
+        }
+
+        .text-teal{
+            color: var(--bs-primary) !important;
+        }
+
+        .text-teal:hover{
+            color: #ffffff !important;
+        }
+
+        .btn-enroll{
+            background-color: #ffffff !important;
+            border-color: var(--bs-primary) !important;
+            color: var(--bs-primary) !important;
+            margin: 2%;
+            animation: flickerAnimation 1.5s ease-in-out infinite;
+        }
+
+        .btn-enroll:hover {
+            background-color: var(--bs-primary) !important;
+            border-color: #ffffff !important;
+            color: #ffffff !important;
+            animation: none;
+        }
+        
+        .btn-noshow{
+            background-color: var(--bs-noshow);
+            color: var(--bs-noshow);
+        }
+        .btn-noshow:hover{
+            background-color: var(--bs-noshow);
+            color: var(--bs-noshow);
+        }
+
+        .btn-secondary {
+            background-color: var(--bs-secondary) !important;
+            border-color: #000000 !important;
+            color: #000000 !important;
+        }
+        
+        .btn-secondary:hover {
+            background-color:  var(--bs-primary) !important;
+            color:  #ffffff !important;
+        }
+
+        .btn-default {
+            background-color: #ffffff !important;
+            border-color: var(--bs-primary) !important;
+            color: var(--bs-primary) !important;
+        }
+        
+        .btn-default:hover {
+            background-color:  var(--bs-primary) !important;
+            color:  #ffffff !important;
+        }
+
+        .btn-dummy{
+            background-color: var(--bs-secondary) !important;
+            border-color: #000000 !important;
+            color: #000000 !important;
+        }
+        .btn-dummy:hover{
+            background-color: var(--bs-secondary) !important;
+            border-color: #000000 !important;
+            color: #000000 !important;
+        }
+        .btn-tertiary {
+            background-color: #000000 !important;
+            border-color: #000000 !important;
+            color: #ffffff !important;
+        }
+        
+        .btn-tertiary:hover {
+            background-color: var(--bs-primary) !important;
+            border-color: #000000 !important;
+            color: #ffffff !important;
+        }
+      
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #ffffff;
+            color: #333;
+        }
+        h1, h2, h3 {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 700;
+        }
+        p, .lead {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 300;
+        }
+        .lead{
+            text-align: left;
+        }
+        .hero {
+            background-color: #1098b6;
+            color: #ffffff;
+        }
+        .btn-light, .btn-lg {
+            background-color: #ffffff;
+            color: #1098b6 !important;
+        }
+        .btn-light:hover, .btn-lg:hover {
+            background-color: #1098b6 !important;
+            color: #ffffff !important;
+        }
+        .bg-light {
+            background-color: #f8f9fa !important;
+        }
+        .card {
+            border: none;
+            background-color: #ffffff;
+            width: 100% !important;
+        }
+        .btn-primary {
+            background-color: #007BFF;
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+        .accordion-button:not(.collapsed) {
+          background: none;  
+          border-color: none;
+        }
+        .card-text{
+            font-size: large;
+        }
+        .offerings{
+            text-align: left;
+        }
+        .checkbox{
+            accent-color: var(--bs-primary);
+            transform: scale(1.3);
+            margin-right: 1%;
+        }
+        .offerings-p{
+            text-align: left;
+            padding-left: 3%;
+        }
+        #tnc{
+            color: var(--bs-primary);
+        }
+        .rounded-img {
+            border-radius: 45%;
+            width: 80px;
+            margin-right: 1%;
+        }
+        .text-left{
+            text-align: left;
+        }
+        .flex-container {
+            display: flex;
+            align-items: center;
+        }
+        .badge-primary{
+            background-color: #ffffff !important;
+            color: var(--bs-primary) !important;
+            border-color: var(--bs-primary);
+        }
+        .badge-secondary{
+            background-color: #ffffff !important;
+            border-color: #069348 !important;
+            color: #069348 !important;
+        }
+        .schedule{
+            margin: 1%;
+        }
+        .syllabus{
+            margin: 1%;
+        }
+        footer {
+            background-color: #343a40;
+            color: #ffffff;
+        }
+        .short-text {
+            display: inline;
+        }
+
+        .full-text {
+            display: none;
+        }
+
+        .read-more {
+            color: var(--bs-primary);
+            cursor: pointer;
+        }
+        .tutor-link{
+            color: var(--bs-primary);
+        }
+    .flicker {
+            animation: flickerAnimation 0.5s ease-in-out 3;
+        }
+        
+        @keyframes flickerAnimation {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top text-white" style="background-color: #1098b6;">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="nlhub-logo-white.svg" alt="Brand Icon" width="90" class="d-inline-block align-top">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link text-white" href="#" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">Home</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="#courses">Courses</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="#faq">FAQ</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <section id="home" class="hero py-5 mt-5">
+        <div class="container">
+            <h1>Supercharge Your Career in AI</h1>
+            <p class="lead text-center"> <strong></strong>Unlock Your Potential: Master AI Today to Lead Future Innovations.</strong></p>
+            <!--p class="lead text-center"> <strong>Want to learn AI from world-class professionals? </strong></p>
+            <p class="lead text-center"> <strong>Need their mentorship in job applications? </strong></p -->
+            <p class="lead">Neural learning hub offers live, interactive, and hands-on program designed to help you create production-ready AI systems from scratch. </p>
+            <p class="lead">Ideal for anyone looking to build AI/ML-based solutions to tackle real-world challenges, this course focuses on practical skills essential for building functional and deployable systems. </p>
+            <p class="lead">Through a guided teaching experience, you'll navigate the full project lifecycle—from pitching and planning to structuring, implementing, and optimizing solutions using industry-grade open-source tools that can run anywhere. </p>
+            <a href="#courses" class="btn btn-light btn-lg">Explore Courses</a>
+        </div>
+    </section>
+    
+    <section id="about" class="py-5">
+        <div class="container">
+            <h2>About Us</h2>
+            <p class="lead">At Neural Learning Hub (NLHub), we are committed to making AI education engaging and effective, guided by senior software deveopers, PhD holders and prestigious university alumni.  </p>
+            <p class="lead">NLHub's core mission is to enable AI career aspirants with knowledge, tools, learning frameworks, and real-word project experience to supercharge their career in AI.</p>
+            <div class="accordion" id="aboutAccordion">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingVision">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseVision" aria-expanded="true" aria-controls="collapseVision">
+                            What We Offer
+                        </button>
+                    </h2>
+                    <div id="collapseVision" class="accordion-collapse collapse show" aria-labelledby="headingVision" data-bs-parent="#aboutAccordion">
+                        <div class="accordion-body">
+                            <div class="list-group">
+                                <h5 class="offerings"><input type="checkbox" onclick="return false" class="checkbox" checked="true"> 50+ hours of foundational learning</h5>
+                                <p class="offerings-p">You'll join 50+ hours of live classes and discussions to strengthen fundamentals of building AI systems that work in the real world.</p>
+                                
+                                <h5 class="offerings"><input type="checkbox" onclick="return false" class="checkbox" checked="true"> Mastering AI/ML best practices</h5>
+                                <p class="offerings-p">You'll learn best practices to tackle the most significant challenges engineers face when building, evaluating, running, monitoring, and maintaining systems in production.</p>
+
+                                <h5 class="offerings"><input type="checkbox" onclick="return false" class="checkbox" checked="true"> Guided real-world project</h5>
+                                <p class="offerings-p">You will get real-world project statement with full implementation details. Your tutor will mentor you in completing the project, uploading to github, and helping you in writing a professional blog. This will be a crucial step in helping you for your next AI role.</p>
+                                
+                                <h5 class="offerings"><input type="checkbox" onclick="return false" class="checkbox" checked="true"> Learning from fullproof source</h5>    
+                                <p class="offerings-p">You'll learn all the concepts followed by easy to follow and lecture correlated code walkthroughs. Your ride to strengthen the fundamentals.</p>
+                                    
+                                <h5 class="offerings"><input type="checkbox" onclick="return false" class="checkbox" checked="true"> Access to industry leader experiences</h5>   
+                                <p class="offerings-p">You'll get lifetime access to all recorded lectures, future classroom hours, guest lectures, industry leader podcasts and a membership to a private community where you can collaborate with thousands of people from different backgrounds.</p>
+
+                                <h5 class="offerings"><input type="checkbox" onclick="return false" class="checkbox" checked="true"> Professional help in resume and job applications</h5>   
+                                <p class="offerings-p"> Our tutors will mentor in resume writing and teach you important techniques in hunting and applying for jobs. They'll also help you access their network for your potential referral.</p>
+
+                                <h5 class="offerings"><input type="checkbox" onclick="return false" class="checkbox" checked="true"> Course completion certificate</h5>   
+                                <p class="offerings-p"> A verifiable and industry peer recognized course completion certificate (upon successful course completion), to help you boost your chances of success and grow your network.</p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTutors">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTutors" aria-expanded="true" aria-controls="collapseTutors">
+                            Tutors
+                        </button>
+                    </h2>
+                    <div id="collapseTutors" class="accordion-collapse" aria-labelledby="headingTutors" data-bs-parent="#aboutAccordion">
+                        <div class="accordion-body">
+                            <h5> Our tutors are experienced professionals with PhDs and industry expertise in AI and ML. </h5>
+                            <div class="card">
+                                <div class="flex-container">
+                                    <img src="tutors/tutor-vinay.jpg" class="rounded-img" />
+                                    <!--p> <a href="https://www.linkedin.com/in/vinaymjoshi/" target="_blank">Dr. Vinay Joshi</a>, a research scientist in AMD's Generative AI Team India (GATI), has previously worked at Intel and IBM, driving AI innovations and hardware acceleration. A contributor to top-tier AI publications, he is passionate about sharing his expertise and preparing candidates for AI roles with targeted teaching and interview guidance. </p -->
+                                    <p>
+                                        <span class="short-text">
+                                            <a href="https://www.linkedin.com/in/vinaymjoshi/" class="tutor-link" target="_blank">Dr. Vinay Joshi</a>, a research scientist in AMD's Generative AI Team India (GATI), has previously worked at Intel and IBM,
+                                        </span>
+                                        <span class="full-text">
+                                            <a href="https://www.linkedin.com/in/vinaymjoshi/" class="tutor-link" target="_blank">Dr. Vinay Joshi</a>, a research scientist in AMD's Generative AI Team India (GATI), has previously worked at Intel and IBM, driving AI innovations and hardware acceleration. A contributor to top-tier AI publications, he is passionate about sharing his expertise and preparing candidates for AI roles with targeted teaching and interview guidance.
+                                        </span>
+                                        <a href="javascript:void(0);" class="read-more">read more...</a>
+                                    </p>
+                                </div>
+                                <!--br>
+                                <div class="flex-container">
+                                    <img src="tutors/tutor-vinay.jpg" class="rounded-img" />
+                                    <p>Dr. Vinay Joshi, a research scientist in AMD's Generative AI Team India (GATI), has previously worked at Intel and IBM, driving AI innovations and hardware acceleration. A contributor to top-tier AI publications, he is passionate about sharing his expertise and preparing candidates for AI roles with targeted teaching and interview guidance. </p>
+                                </div -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOffer">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOffer" aria-expanded="true" aria-controls="collapseOffer">
+                            Our Vision
+                        </button>
+                    </h2>
+                    <div id="collapseOffer" class="accordion-collapse" aria-labelledby="headingOffer" data-bs-parent="#aboutAccordion">
+                        <div class="accordion-body">
+                            <p>Industry has a serious demand for AI talent and its growing everyday. To fill this in, we want to help people supercharge their career in AI.</p>
+                            <p>We want to achieve this by making learning AI a fun and interactive activity. It should enable you to learn concepts that you never forget.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="courses" class="py-5 bg-light">
+        <div class="container text-center">
+            <h2 class="text-left">Courses</h2>
+            <br>
+            <div class="row justify-content-center">
+                <div class="col-md-12 mb-4">
+                    <div class="card shadow-sm">
+                        <div class="row align-items-center">
+                            <div class="col-md-4">
+                                <video width="95%" controls>
+                                    <source src="genai.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h3 class="card-title">Applied Natural Language Processing <!--button class="btn btn-dummy">On-going session: April'25 </button --> </h3> 
+                                    <strong>Session April'25 from 31st March 2025</strong> <a href="https://rzp.io/l/zjW6wwa4L" class="btn btn-enroll" target="_blank"><strong>Enroll now!</strong> </a>
+                                    <p class="card-text">Hands-on course focusing on Generative AI with the latest industry-demanding concepts.</p>
+                                    <button class="btn btn-default" type="button" data-bs-toggle="collapse" data-bs-target="#CollapseTableVision" aria-expanded="false" aria-controls="collapseTableVision">
+                                        Schedule & Syllabus
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="collapse mt-3 schedule" id="CollapseTableVision">
+                            <div class="table-responsive">
+                                <h5> <strong> Schedule </strong> </h5>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>DoW</th>
+                                        <th>Activity</th>
+                                        <th>Time</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Mon</td>
+                                        <td>Interactive class</td>
+                                        <td>1700-1830 IST</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tue</td>
+                                        <td>Individual work</td>
+                                        <td>-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Wed</td>
+                                        <td>Individual work</td>
+                                        <td>-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Thu</td>
+                                        <td>Individual work</td>
+                                        <td>-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Fri</td>
+                                        <td>Interactive class</td>
+                                        <td>1700-1830 IST</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sat</td>
+                                        <td>2 Weeks</td>
+                                        <td>0900-1500 IST</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                            </div>
+                        </div>
+                        <div class="collapse mt-3 syllabus" id="CollapseTableVision">
+                            <div class="table-responsive">
+                                <h5> <strong>Syllabus</strong> </h5>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Day</th>
+                                        <th>Chapter</th>
+                                        <th>Topic</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1 (31st Mar 2025) </td>
+                                        <td>Introduction to AI</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>5</td>
+                                        <td>Transformers</td>
+                                        <td>Encoder-decoder, decoder-only, autoregressive inference</td>
+                                    </tr>
+                                    <tr>
+                                        <td>8</td>
+                                        <td>Large language models</td>
+                                        <td>Architecture types, pretraining details</td>
+                                    </tr>
+                                    <tr>
+                                        <td>12</td>
+                                        <td>Large language models</td>
+                                        <td>Finetuning, RLHF, DPO, Distillation</td>
+                                    </tr>
+                                    <tr>
+                                        <td>15</td>
+                                        <td>Optimal inference serving</td>
+                                        <td>Challenges, solutions, cloud platform options</td>
+                                    </tr>
+                                    <tr>
+                                        <td>19</td>
+                                        <td>Data engineering for LLMs</td>
+                                        <td>Prompt engineering, RAGs</td>
+                                    </tr>
+                                    <tr>
+                                        <td>22</td>
+                                        <td>Agentic AI</td>
+                                        <td>AI Agents, Multi-agentic AI frameworks</td>
+                                    </tr>
+                                    <tr>
+                                        <td>26</td>
+                                        <td>Evals and APIs</td>
+                                        <td>Using OpenAI evals and API in production</td>
+                                    </tr>
+                                    <tr>
+                                        <td>29</td>
+                                        <td>DevOps for AI</td>
+                                        <td>MLOps, AIOps, LLMOps</td>
+                                    </tr>
+                                    <tr>
+                                        <td>33</td>
+                                        <td>How to solve any AI problem?</td>
+                                        <td>Case studies</td>
+                                    </tr>
+                                    <tr>
+                                        <td>36</td>
+                                        <td>Real-world project assignments</td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                          </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- Applied NLP course ended  -->
+
+            <div class="row justify-content-center">
+                <div class="col-md-12 mb-4">
+                    <div class="card shadow-sm">
+                        <div class="row align-items-center">
+                            <div class="col-md-4">
+                                <video width="95%" controls>
+                                    <source src="vision-lang.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h3 class="card-title">Applied Vision-Language AI</h3>
+                                    <p class="card-text">Hands-on course focusing on Multi-Modal AI with the latest industry-demanding concepts.</p>
+                                    <button class="btn btn-primary"> 
+                                        <strong>Coming soon, stay tuned!</strong>
+                                    </button>
+                                    <!--button class="btn btn-primary"> 
+                                        <a href="https://rzp.io/l/zjW6wwa4L" class="text-white text-teal text-decoration-none" target="_blank"><strong>Enroll Now</strong></a>
+                                    </button-->
+                                    <!--div class="btn-group" role="group" aria-label="Basic example">  
+                                    <button class="btn btn-tertiary" type="button" data-bs-toggle="collapse" data-bs-target="#ScheduleCollapseTableVision" aria-expanded="false" aria-controls="collapseTableVision">
+                                        Schedule
+                                    </button>
+                                    <button class="btn btn-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#SyllabusCollapseTableVision" aria-expanded="false" aria-controls="collapseTableVision">
+                                        Syllabus
+                                    </button>
+                                    </div-->
+                                    <div class="collapse mt-3" id="ScheduleVLCollapseTableVision">
+                                        <div class="table-responsive">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>DoW</th>
+                                                    <th>Activity</th>
+                                                    <th>Time</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Mon</td>
+                                                    <td>Interactive class</td>
+                                                    <td>1700-1830 IST</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Tue</td>
+                                                    <td>Individual work</td>
+                                                    <td>-</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Wed</td>
+                                                    <td>Individual work</td>
+                                                    <td>-</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Thu</td>
+                                                    <td>Individual work</td>
+                                                    <td>-</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Fri</td>
+                                                    <td>Interactive class</td>
+                                                    <td>1700-1830 IST</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Sat</td>
+                                                    <td>2 Weeks</td>
+                                                    <td>0900-1500 IST</td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                        </div>
+                                    </div>
+                                    <div class="collapse mt-3" id="SyllabusVLCollapseTableVision">
+                                        <div class="table-responsive">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>Module</th>
+                                                    <th>Duration</th>
+                                                    <th>Instructor</th>
+                                                    <th>Mode</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Introduction to AI</td>
+                                                    <td>2 Weeks</td>
+                                                    <td>Dr. Smith</td>
+                                                    <td>Online</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Advanced Module</td>
+                                                    <td>4 Weeks</td>
+                                                    <td>Dr. Doe</td>
+                                                    <td>Hybrid</td>
+                                                </tr>
+                                            <tr>
+                                                    <td>Advanced Module</td>
+                                                    <td>4 Weeks</td>
+                                                    <td>Dr. Doe</td>
+                                                    <td>Hybrid</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Applied vision course ended -->
+        </div>
+    </section>
+
+    <section id="faq" class="py-5">
+        <div class="container">
+            <h2>FAQ</h2>
+            <div class="accordion" id="aboutAccordion">
+                <!-- Q begin -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingQ1">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseQ1" aria-expanded="true" aria-controls="collapseQ1">
+                            Q1: What happens if I can't attend a live session?
+                        </button>
+                    </h2>
+                    <div id="collapseQ1" class="accordion-collapse collapse show" aria-labelledby="headingQ1" data-bs-parent="#aboutAccordion">
+                        <div class="accordion-body bg-light">
+                             Every live session is recorded. If you can't attend a live session, you can catch up asynchronously later using the recording.
+                        </div>
+                    </div>
+                </div>
+                <!-- Q end -->
+                <!-- Q begin -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingQ2">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseQ2" aria-expanded="true" aria-controls="collapseQ2">
+                            Q2: I'm a complete beginner. Will this program be helpful for me?
+                        </button>
+                    </h2>
+                    <div id="collapseQ2" class="accordion-collapse collapse show" aria-labelledby="headingQ2" data-bs-parent="#aboutAccordion">
+                        <div class="accordion-body bg-light">
+                            This program is not an introduction to machine learning. While we'll discuss many fundamental ideas behind machine learning, beginners will have to put in extra hours to keep up with the course. But worry not! Our tutors will give you homeworks so that you can effortlessly keep up.
+                             
+                        </div>
+                    </div>
+                </div>
+                <!-- Q end -->
+                <!-- Q begin -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingQ3">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseQ3" aria-expanded="true" aria-controls="collapseQ3">
+                            Q3: What does "lifetime access" mean?
+                        </button>
+                    </h2>
+                    <div id="collapseQ3" class="accordion-collapse collapse show" aria-labelledby="headingQ3" data-bs-parent="#aboutAccordion">
+                        <div class="accordion-body bg-light">
+                             You only pay once to join the program and get immediate access to every past, present, and future cohort.
+
+                            Every new iteration of the program is better than the ones before. Many students take classes once and then join a later cohort to benefit from the updates.
+                            
+                            The lifetime access removes any pressure from having to complete the program when life gets in the way.
+                        </div>
+                    </div>
+                </div>
+                <!-- Q end -->
+                <!-- Q begin -->
+            
+            <br>
+            <p> Still struggling with some questions? <a href="#contact" class="tutor-link"> Email or WhatsApp </a> us with your queries and we will get back to you in no time. </p>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="contact" class="py-5 bg-light">
+        <div class="container text-center">
+            <h2>Contact Us</h2>
+            <p><img src="nlh-assets/mail.png" width="30"> team@neurallearninghub.in  </p>
+            <p><img src="nlh-assets/whatsapp.svg" width="30"> +91 8050 39 2223</p>
+        </div>
+    </section>
+  
+    <footer class="text-white text-center py-3">
+        <p>&copy; 2025 Neural Learning Hub. All rights reserved. <a href="tnc.html" id="tnc" target="_blank">*Terms and conditions.</a> </p>
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
+        link.addEventListener('click', function() {
+            var navbarCollapse = document.querySelector('.navbar-collapse');
+            if (navbarCollapse.classList.contains('show')) {
+                var bsCollapse = new bootstrap.Collapse(navbarCollapse, {toggle: false});
+                bsCollapse.hide();
+            }
+        });
+    });
+</script>
+<script>
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', function(event) {
+            const targetId = this.getAttribute('href').substring(1);
+            const targetElement = document.getElementById(targetId);
+            if (targetElement) {
+                targetElement.classList.add('flicker');
+                setTimeout(() => {
+                    targetElement.classList.remove('flicker');
+                }, 1000);
+            }
+        });
+    });
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const readMoreLink = document.querySelector('.read-more');
+    const shortText = document.querySelector('.short-text');
+    const fullText = document.querySelector('.full-text');
+
+    readMoreLink.addEventListener('click', function() {
+        if (fullText.style.display === 'none') {
+            fullText.style.display = 'inline';
+            shortText.style.display = 'none';
+            readMoreLink.textContent = 'Read less...';
+        } else {
+            fullText.style.display = 'none';
+            shortText.style.display = 'inline';
+            readMoreLink.textContent = 'Read more...';
+        }
+    });
+});
+</script>
+</body>
+</html>
+
