@@ -48,7 +48,19 @@
             color: #ffffff !important;
             animation: none;
         }
-        
+        .btn-new{
+            padding: 5px;
+            background-color: #ffffff !important;
+            border-color: var(--bs-primary) !important;
+            color: var(--bs-primary) !important;
+            animation: none;
+        }
+        .btn-new:hover {
+            background-color: var(--bs-primary) !important;
+            border-color: #ffffff !important;
+            color: #ffffff !important;
+            animation: none;
+        }
         .btn-noshow{
             background-color: var(--bs-noshow);
             color: var(--bs-noshow);
@@ -117,6 +129,9 @@
         }
         .lead{
             text-align: left;
+        }
+        .register{
+            text-align: center;
         }
         .hero {
             background-color: #1098b6;
@@ -240,8 +255,8 @@
             <a class="navbar-brand" href="#">
                 <img src="nlhub-logo-white.svg" alt="Brand Icon" width="90" class="d-inline-block align-top">
             </a>
-            <a class="nav-link blinking" href="#" data-bs-toggle="modal" data-bs-target="#imageModal">
-                New webinar!
+            <a class="nav-link blinking btn btn-new" href="#" data-bs-toggle="modal" data-bs-target="#imageModal">
+                &#128227; New webinar!
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -263,10 +278,11 @@
         <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-            <h5 class="modal-title" id="imageModalLabel">New Webinar on 29th Nov 2025 at 10AM</h5>
-            <p class="lead"><a href="https://forms.gle/1i7brFY6gifmPJ187" target="_blank" > Register now!  </a> </p>
+            <h5 class="modal-title" id="imageModalLabel">New Webinar: 16-Nov-25 @10AM</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+            <p class="lead register"><a href="https://forms.gle/1i7brFY6gifmPJ187" target="_blank" > Register now!  </a> </p>
+
             <div class="modal-body text-center">
             <a href="https://forms.gle/1i7brFY6gifmPJ187" target="_blank">
                     <img src="nlh-assets/nlhub-poster.png" width="100%">
@@ -389,9 +405,9 @@
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
-                                    <h3 class="card-title">Applied Natural Language Processing <!--button class="btn btn-dummy">On-going session: April'25 </button --> </h3> 
+                                    <h3 class="card-title">Applied AI (NLP) phase 1 <!--button class="btn btn-dummy">On-going session: April'25 </button --> </h3> 
                                     <strong>Session Nov'25 from 29th Nov 2025</strong> <a href="https://rzp.io/l/zjW6wwa4L" class="btn btn-enroll" target="_blank"><strong>Enroll now!</strong> </a>
-                                    <p class="card-text">Hands-on course focusing on Generative AI with the latest industry-demanding concepts.</p>
+                                    <p class="card-text">Hands-on course focusing on <strong>foundations of generative AI from deep learning to agents </strong>. Even if you are a <strong>beginner do not worry!</strong> This course will guide you through relevant prerequisites so that you are comfortable throughout the course.</p>
                                     <button class="btn btn-default" type="button" data-bs-toggle="collapse" data-bs-target="#CollapseTableVision" aria-expanded="false" aria-controls="collapseTableVision">
                                         Schedule & Syllabus
                                     </button>
@@ -464,24 +480,29 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>Week 1 (29th Nov 2025) - Week 3 </td>
+                                        <td>Week 1 (29th Nov 2025) </td>
+                                        <td>Deep learning basics</td>
+                                        <td> Neural networks (MLP, CNNs) training techniques and inference, Regularization, Normalization, Objective functions, Optimizers, Reinforcement learning. </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Week 2 - Week 4 </td>
                                         <td>LLMs</td>
                                         <td>Architectures, pretraining, SFT, RLHF/DPO/GRPO, optimization (quantization, KV-cache management, distributed implementation), serving, API integration. </td>
                                     </tr>
                                     <tr>
-                                        <td>Week 4 - 5 </td>
+                                        <td>Week 5 </td>
                                         <td>Prompt engineering</td>
                                         <td>Basics, prompt design techniques, prompt optimizations, structured & programmatic prompting, domain specific prompting, evals. </td>
                                     </tr>
                                     <tr>
                                         <td>Week 6 - 7 </td>
                                         <td>RAG</td>
-                                        <td>Core RAG architecture, Retrieval fundamentals, context & prompt construction, evals, hybrid architectures, RAG alignment, deployment frameworks.</td>
+                                        <td>Core RAG architecture, Retrieval fundamentals, evals, hybrid architectures, deployment frameworks.</td>
                                     </tr>
                                     <tr>
                                         <td>Week 8 - 10 </td>
                                         <td>Agents</td>
-                                        <td>Foundations, agent architectures, tool use integration, memory & learning, reasoning & planning, multi-agent systems, evals, frameworks.</td>
+                                        <td>Foundations, agent architectures, tool use integration, memory, evals, frameworks.</td>
                                     </tr>
                                     <tr>
                                         <td>Week 11 - 13 </td>
@@ -510,8 +531,8 @@
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
-                                    <h3 class="card-title">Applied Vision-Language AI</h3>
-                                    <p class="card-text">Hands-on course focusing on Multi-Modal AI with the latest industry-demanding concepts.</p>
+                                    <h3 class="card-title">Applied AI (Multi-modal) phase 1</h3>
+                                    <p class="card-text">Hands-on course focusing on multi-modal AI with latest in-demand industry-demanding techniques.</p>
                                     <button class="btn btn-primary"> 
                                         <strong>Coming soon, stay tuned!</strong>
                                     </button>
