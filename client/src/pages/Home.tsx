@@ -3,15 +3,15 @@ import { Link as ScrollLink } from "react-scroll";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { insertContactSchema } from "@shared/schema";
-import { useContactForm } from "@/hooks/use-contact";
-import { 
-  ArrowRight, 
-  BookOpen, 
-  Award, 
-  Users, 
-  Briefcase, 
-  Terminal, 
-  CheckCircle2, 
+import { insertContactSchema } from "@shared/schema";
+import {
+  ArrowRight,
+  BookOpen,
+  Award,
+  Users,
+  Briefcase,
+  Terminal,
+  CheckCircle2,
   Linkedin,
   Clock,
   Code2
@@ -28,7 +28,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       <Navbar />
-      
+
       {/* Hero Section */}
       <section id="hero" className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
         {/* Background Effects */}
@@ -49,17 +49,17 @@ export default function Home() {
               </span>
               New Cohort Starting Nov '25
             </span>
-            
+
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold font-display tracking-tighter mb-8 leading-[1.1]">
               Supercharge Your <br className="hidden md:block" />
               <span className="text-gradient">Career in AI</span>
             </h1>
-            
+
             <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto mb-12 leading-relaxed">
-              Unlock Your Potential: Master AI Today to Lead Future Innovations. 
+              Unlock Your Potential: Master AI Today to Lead Future Innovations.
               Hands-on programs designed to help you create production-ready AI systems from scratch.
             </p>
-            
+
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <ScrollLink to="courses" smooth={true} offset={-80}>
                 <Button size="lg" className="h-14 px-8 text-lg rounded-xl bg-primary hover:bg-primary/90 shadow-lg shadow-primary/25 hover:shadow-primary/40 hover:-translate-y-1 transition-all">
@@ -87,7 +87,7 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <SectionHeading 
+              <SectionHeading
                 align="left"
                 label="Our Vision"
                 title="Transforming How AI is Taught"
@@ -105,7 +105,7 @@ export default function Home() {
                 </div>
               </div>
             </motion.div>
-            
+
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -135,15 +135,15 @@ export default function Home() {
       {/* Courses Section */}
       <section id="courses" className="py-32 bg-black/40">
         <div className="container mx-auto px-4">
-          <SectionHeading 
+          <SectionHeading
             label="Our Programs"
             title="Industry-Grade AI Curriculum"
             description="Designed by experts from Microsoft, Intel, and IBM to take you from foundational concepts to deploying LLM agents."
           />
-          
+
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {/* Active Course */}
-            <motion.div 
+            <motion.div
               whileHover={{ y: -5 }}
               className="rounded-3xl bg-card border border-primary/20 overflow-hidden relative group neon-glow"
             >
@@ -155,14 +155,14 @@ export default function Home() {
                   </span>
                   <BookOpen className="text-white/20 w-8 h-8" />
                 </div>
-                
+
                 <h3 className="text-2xl font-bold font-display text-white mb-4 group-hover:text-primary transition-colors">
                   Applied AI (NLP) Phase 1
                 </h3>
                 <p className="text-muted-foreground mb-8">
                   Hands-on course focusing on foundations of generative AI from deep learning to agents. Perfect for beginners willing to put in the work.
                 </p>
-                
+
                 <div className="space-y-3 mb-8">
                   {['Deep Learning Basics', 'LLM Architectures & Training', 'Prompt Engineering', 'RAG Systems', 'AI Agents', 'Capstone Project'].map((item) => (
                     <div key={item} className="flex items-center gap-3 text-sm text-white/80">
@@ -171,7 +171,7 @@ export default function Home() {
                     </div>
                   ))}
                 </div>
-                
+
                 <Button className="w-full bg-primary hover:bg-primary/90 text-white rounded-xl py-6 text-lg font-semibold shadow-lg shadow-primary/20">
                   Enroll Now
                 </Button>
@@ -179,7 +179,7 @@ export default function Home() {
             </motion.div>
 
             {/* Coming Soon Course */}
-            <motion.div 
+            <motion.div
               className="rounded-3xl bg-card/50 border border-white/5 overflow-hidden relative opacity-75 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-500"
             >
               <div className="p-8 h-full flex flex-col">
@@ -189,14 +189,14 @@ export default function Home() {
                   </span>
                   <Users className="text-white/20 w-8 h-8" />
                 </div>
-                
+
                 <h3 className="text-2xl font-bold font-display text-white mb-4">
                   Applied AI (Multi-modal)
                 </h3>
                 <p className="text-muted-foreground mb-8">
                   Hands-on course focusing on multi-modal AI with latest in-demand industry-demanding techniques.
                 </p>
-                
+
                 <div className="mt-auto pt-8 border-t border-white/5 text-center">
                   <p className="text-sm text-muted-foreground font-medium">Join waitlist to get notified</p>
                 </div>
@@ -209,14 +209,14 @@ export default function Home() {
       {/* Tutors Section */}
       <section id="tutors" className="py-32">
         <div className="container mx-auto px-4">
-          <SectionHeading 
+          <SectionHeading
             label="Mentorship"
             title="Learn from Industry Leaders"
             description="Our tutors bring experience from top-tier tech giants and research institutions."
           />
-          
+
           <div className="max-w-4xl mx-auto">
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -225,13 +225,13 @@ export default function Home() {
               {/* Unsplash image of a professional man, with alt text */}
               <div className="w-48 h-48 rounded-2xl overflow-hidden shrink-0 border-2 border-primary/30 shadow-2xl">
                 {/* Professional headshot */}
-                <img 
-                  src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=400&fit=crop" 
-                  alt="Dr. Vinay Joshi" 
+                <img
+                  src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=400&fit=crop"
+                  alt="Dr. Vinay Joshi"
                   className="w-full h-full object-cover"
                 />
               </div>
-              
+
               <div className="text-center md:text-left">
                 <div className="flex flex-col md:flex-row items-center gap-4 mb-4">
                   <h3 className="text-2xl font-bold text-white font-display">Dr. Vinay Joshi</h3>
@@ -241,7 +241,7 @@ export default function Home() {
                 </div>
                 <p className="text-secondary font-medium mb-4">Principal Scientist at Microsoft</p>
                 <p className="text-muted-foreground leading-relaxed mb-6">
-                  Previously at AMD, Intel, and IBM. Dr. Joshi drives AI innovations and hardware acceleration. 
+                  Previously at AMD, Intel, and IBM. Dr. Joshi drives AI innovations and hardware acceleration.
                   A contributor to top-tier AI publications, he is passionate about sharing his expertise and preparing candidates for AI roles with targeted teaching and interview guidance.
                 </p>
                 <div className="flex flex-wrap gap-2 justify-center md:justify-start">
@@ -260,7 +260,7 @@ export default function Home() {
       <section id="faq" className="py-32 bg-black/40">
         <div className="container mx-auto px-4 max-w-3xl">
           <SectionHeading label="FAQ" title="Common Questions" />
-          
+
           <Accordion type="single" collapsible className="space-y-4">
             <AccordionItem value="item-1" className="border border-white/10 rounded-xl px-6 bg-card">
               <AccordionTrigger className="text-lg font-medium hover:text-primary transition-colors">
@@ -270,7 +270,7 @@ export default function Home() {
                 Every live session is recorded. If you can't attend a live session, you can catch up asynchronously later using the recording at your own pace.
               </AccordionContent>
             </AccordionItem>
-            
+
             <AccordionItem value="item-2" className="border border-white/10 rounded-xl px-6 bg-card">
               <AccordionTrigger className="text-lg font-medium hover:text-primary transition-colors">
                 I'm a complete beginner. Will this be helpful?
@@ -279,7 +279,7 @@ export default function Home() {
                 This program is not an introduction to machine learning basics. However, our tutors will provide curated homework and prerequisite materials so you can catch up. If you are willing to put in the extra hours, you will thrive.
               </AccordionContent>
             </AccordionItem>
-            
+
             <AccordionItem value="item-3" className="border border-white/10 rounded-xl px-6 bg-card">
               <AccordionTrigger className="text-lg font-medium hover:text-primary transition-colors">
                 What does "lifetime access" mean?
@@ -301,7 +301,7 @@ export default function Home() {
               <h2 className="text-3xl font-bold font-display mb-3 text-white">Get In Touch</h2>
               <p className="text-muted-foreground">Have questions about the curriculum or eligibility? Send us a message.</p>
             </div>
-            
+
             <ContactForm />
           </div>
         </div>
@@ -313,8 +313,6 @@ export default function Home() {
 }
 
 function ContactForm() {
-  const { mutate, isPending } = useContactForm();
-  
   const form = useForm<import("@shared/schema").InsertContact>({
     resolver: zodResolver(insertContactSchema),
     defaultValues: {
@@ -325,53 +323,52 @@ function ContactForm() {
   });
 
   const onSubmit = (data: import("@shared/schema").InsertContact) => {
-    mutate(data, {
-      onSuccess: () => form.reset()
-    });
+    const subject = encodeURIComponent(`Inquiry from ${data.name}`);
+    const body = encodeURIComponent(`Name: ${data.name}\nEmail: ${data.email}\n\nMessage:\n${data.message}`);
+    window.location.href = `mailto:contact@neurallearninghub.in?subject=${subject}&body=${body}`;
   };
 
   return (
     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
       <div className="space-y-2">
-        <Input 
-          placeholder="Your Name" 
+        <Input
+          placeholder="Your Name"
           {...form.register("name")}
-          className="bg-background/50 border-white/10 focus:border-primary h-12 rounded-xl" 
+          className="bg-background/50 border-white/10 focus:border-primary h-12 rounded-xl"
         />
         {form.formState.errors.name && (
           <p className="text-xs text-destructive">{form.formState.errors.name.message}</p>
         )}
       </div>
-      
+
       <div className="space-y-2">
-        <Input 
-          placeholder="Email Address" 
-          type="email" 
+        <Input
+          placeholder="Email Address"
+          type="email"
           {...form.register("email")}
-          className="bg-background/50 border-white/10 focus:border-primary h-12 rounded-xl" 
+          className="bg-background/50 border-white/10 focus:border-primary h-12 rounded-xl"
         />
         {form.formState.errors.email && (
           <p className="text-xs text-destructive">{form.formState.errors.email.message}</p>
         )}
       </div>
-      
+
       <div className="space-y-2">
-        <Textarea 
-          placeholder="How can we help you?" 
+        <Textarea
+          placeholder="How can we help you?"
           {...form.register("message")}
-          className="bg-background/50 border-white/10 focus:border-primary min-h-[120px] rounded-xl resize-none" 
+          className="bg-background/50 border-white/10 focus:border-primary min-h-[120px] rounded-xl resize-none"
         />
         {form.formState.errors.message && (
           <p className="text-xs text-destructive">{form.formState.errors.message.message}</p>
         )}
       </div>
-      
-      <Button 
-        type="submit" 
+
+      <Button
+        type="submit"
         className="w-full bg-white text-black hover:bg-white/90 font-bold h-12 rounded-xl transition-all"
-        disabled={isPending}
       >
-        {isPending ? "Sending..." : "Send Message"}
+        Send Message (via Email)
       </Button>
     </form>
   );
