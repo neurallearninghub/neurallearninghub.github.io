@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
 import { Link as ScrollLink } from "react-scroll";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { insertContactSchema } from "@shared/schema";
 import { insertContactSchema } from "@shared/schema";
 import {
   ArrowRight,
@@ -14,15 +14,33 @@ import {
   CheckCircle2,
   Linkedin,
   Clock,
-  Code2
+  Code2,
+  FileText,
+  Calendar
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { SectionHeading } from "@/components/SectionHeading";
+import { getNearestCohortLine, cohorts } from "@/lib/cohort-utils";
 
 export default function Home() {
   return (
@@ -47,7 +65,7 @@ export default function Home() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-secondary"></span>
               </span>
-              New Cohort Starting Nov '25
+              New Cohort Starting {getNearestCohortLine()}
             </span>
 
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold font-display tracking-tighter mb-8 leading-[1.1]">
@@ -145,13 +163,14 @@ export default function Home() {
             {/* Active Course */}
             <motion.div
               whileHover={{ y: -5 }}
-              className="rounded-3xl bg-card border border-primary/20 overflow-hidden relative group neon-glow"
+              id="course-nlp"
+              className="scroll-mt-32 rounded-3xl bg-card border border-primary/20 overflow-hidden relative group neon-glow"
             >
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-secondary" />
               <div className="p-8">
                 <div className="flex justify-between items-start mb-6">
                   <span className="px-3 py-1 rounded-full bg-primary/20 text-primary text-xs font-bold uppercase">
-                    Session Nov '25
+                    Session {cohorts["Applied AI (NLP) Phase 1"] || "Soon"}
                   </span>
                   <BookOpen className="text-white/20 w-8 h-8" />
                 </div>
@@ -172,15 +191,99 @@ export default function Home() {
                   ))}
                 </div>
 
-                <Button className="w-full bg-primary hover:bg-primary/90 text-white rounded-xl py-6 text-lg font-semibold shadow-lg shadow-primary/20">
-                  Enroll Now
-                </Button>
+                <div className="flex gap-3 mb-6">
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button size="sm" variant="outline" className="flex-1 gap-2 border-primary/20 hover:bg-primary/10 hover:text-primary">
+                        <FileText className="w-4 h-4" /> Syllabus
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent className="max-w-3xl bg-card border-white/10 text-white">
+                      <DialogHeader>
+                        <DialogTitle className="text-2xl font-display font-bold text-white mb-4">Curriculum</DialogTitle>
+                      </DialogHeader>
+                      <div className="rounded-xl border border-white/10 overflow-hidden">
+                        <Table>
+                          <TableHeader className="bg-white/5">
+                            <TableRow className="border-white/10 hover:bg-white/5">
+                              <TableHead className="text-primary font-bold">Duration</TableHead>
+                              <TableHead className="text-primary font-bold">Chapter</TableHead>
+                              <TableHead className="text-primary font-bold">Topic</TableHead>
+                            </TableRow>
+                          </TableHeader>
+                          <TableBody>
+                            {[
+                              { duration: "Week 1 (31st Jan 2026)", chapter: "Deep learning basics", topic: "Neural networks (MLP, CNNs) training techniques and inference, Regularization, Normalization, Objective functions, Optimizers, Reinforcement learning." },
+                              { duration: "Week 2 - Week 4", chapter: "LLMs", topic: "Architectures, pretraining, SFT, RLHF/DPO/GRPO, optimization (quantization, KV-cache management, distributed implementation), serving, API integration." },
+                              { duration: "Week 5", chapter: "Prompt engineering", topic: "Basics, prompt design techniques, prompt optimizations, structured & programmatic prompting, domain specific prompting, evals." },
+                              { duration: "Week 6 - 7", chapter: "RAG", topic: "Core RAG architecture, Retrieval fundamentals, evals, hybrid architectures, deployment frameworks." },
+                              { duration: "Week 8 - 10", chapter: "Agents", topic: "Foundations, agent architectures, tool use integration, memory, evals, frameworks." },
+                              { duration: "Week 11 - 13", chapter: "Projects", topic: "A comphrehensive list of industry-grade projects and detailed guidance on building robust and deployable solution." },
+                            ].map((row, i) => (
+                              <TableRow key={i} className="border-white/10 hover:bg-white/5">
+                                <TableCell className="font-medium text-white/80 whitespace-nowrap">{row.duration}</TableCell>
+                                <TableCell className="text-white/80 whitespace-nowrap font-semibold">{row.chapter}</TableCell>
+                                <TableCell className="text-white/60">{row.topic}</TableCell>
+                              </TableRow>
+                            ))}
+                          </TableBody>
+                        </Table>
+                      </div>
+                    </DialogContent>
+                  </Dialog>
+
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button size="sm" variant="outline" className="flex-1 gap-2 border-primary/20 hover:bg-primary/10 hover:text-primary">
+                        <Calendar className="w-4 h-4" /> Schedule
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent className="max-w-2xl bg-card border-white/10 text-white">
+                      <DialogHeader>
+                        <DialogTitle className="text-2xl font-display font-bold text-white mb-4">Course Schedule</DialogTitle>
+                      </DialogHeader>
+                      <div className="rounded-xl border border-white/10 overflow-hidden">
+                        <Table>
+                          <TableHeader className="bg-white/5">
+                            <TableRow className="border-white/10 hover:bg-white/5">
+                              <TableHead className="text-primary font-bold">DoW</TableHead>
+                              <TableHead className="text-primary font-bold">Activity</TableHead>
+                              <TableHead className="text-primary font-bold">Time</TableHead>
+                            </TableRow>
+                          </TableHeader>
+                          <TableBody>
+                            {[
+                              { day: "Mon", activity: "Individual work", time: "-" },
+                              { day: "Tue", activity: "Individual work", time: "-" },
+                              { day: "Wed", activity: "Classroom hours", time: "9-10 AM, 5:30-6:30PM" },
+                              { day: "Thu", activity: "Classroom hours", time: "9-10 AM, 5:30-6:30PM" },
+                              { day: "Fri", activity: "Individual work", time: "-" },
+                              { day: "Sat", activity: "Teaching", time: "9AM - 1PM" },
+                              { day: "Sun", activity: "Teaching", time: "9AM - 1PM" },
+                            ].map((row) => (
+                              <TableRow key={row.day} className="border-white/10 hover:bg-white/5">
+                                <TableCell className="font-medium text-white/80">{row.day}</TableCell>
+                                <TableCell className="text-white/60">{row.activity}</TableCell>
+                                <TableCell className="text-white/60">{row.time}</TableCell>
+                              </TableRow>
+                            ))}
+                          </TableBody>
+                        </Table>
+                      </div>
+                    </DialogContent>
+                  </Dialog>
+                </div>
+
+                <div className="w-full">
+                  <RazorpayButton />
+                </div>
               </div>
             </motion.div>
 
             {/* Coming Soon Course */}
             <motion.div
-              className="rounded-3xl bg-card/50 border border-white/5 overflow-hidden relative opacity-75 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-500"
+              id="course-multimodal"
+              className="scroll-mt-32 rounded-3xl bg-card/50 border border-white/5 overflow-hidden relative opacity-75 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-500"
             >
               <div className="p-8 h-full flex flex-col">
                 <div className="flex justify-between items-start mb-6">
@@ -226,7 +329,7 @@ export default function Home() {
               <div className="w-48 h-48 rounded-2xl overflow-hidden shrink-0 border-2 border-primary/30 shadow-2xl">
                 {/* Professional headshot */}
                 <img
-                  src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=400&fit=crop"
+                  src="/tutor-vinay.jpg"
                   alt="Dr. Vinay Joshi"
                   className="w-full h-full object-cover"
                 />
@@ -235,7 +338,12 @@ export default function Home() {
               <div className="text-center md:text-left">
                 <div className="flex flex-col md:flex-row items-center gap-4 mb-4">
                   <h3 className="text-2xl font-bold text-white font-display">Dr. Vinay Joshi</h3>
-                  <a href="#" className="p-2 rounded-full bg-[#0077b5]/20 text-[#0077b5] hover:bg-[#0077b5]/30 transition-colors">
+                  <a
+                    href="https://www.linkedin.com/in/vinaymjoshi/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2 rounded-full bg-[#0077b5]/20 text-[#0077b5] hover:bg-[#0077b5]/30 transition-colors"
+                  >
                     <Linkedin className="w-4 h-4" />
                   </a>
                 </div>
@@ -312,6 +420,25 @@ export default function Home() {
   );
 }
 
+function RazorpayButton() {
+  const formRef = useRef<HTMLFormElement>(null);
+
+  useEffect(() => {
+    if (formRef.current && !formRef.current.querySelector("script")) {
+      const script = document.createElement("script");
+      script.src = "https://checkout.razorpay.com/v1/payment-button.js";
+      script.dataset.payment_button_id = "pl_RzjGd4rfPcSIPO";
+      script.async = true;
+      formRef.current.appendChild(script);
+    }
+  }, []);
+
+  return (
+    <form ref={formRef} className="w-full text-center">
+    </form>
+  );
+}
+
 function ContactForm() {
   const form = useForm<import("@shared/schema").InsertContact>({
     resolver: zodResolver(insertContactSchema),
@@ -325,7 +452,7 @@ function ContactForm() {
   const onSubmit = (data: import("@shared/schema").InsertContact) => {
     const subject = encodeURIComponent(`Inquiry from ${data.name}`);
     const body = encodeURIComponent(`Name: ${data.name}\nEmail: ${data.email}\n\nMessage:\n${data.message}`);
-    window.location.href = `mailto:contact@neurallearninghub.in?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:team@neurallearninghub.in?subject=${subject}&body=${body}`;
   };
 
   return (

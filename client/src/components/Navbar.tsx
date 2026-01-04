@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { Link } from "wouter";
-import { Menu, X, BrainCircuit } from "lucide-react";
+import { Link, useLocation } from "wouter";
+import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Link as ScrollLink } from "react-scroll";
@@ -13,9 +13,15 @@ const navItems = [
   { name: "Contact", to: "contact" },
 ];
 
-export function Navbar() {
+interface NavbarProps {
+  hideLinks?: boolean;
+}
+
+export function Navbar({ hideLinks = false }: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [location] = useLocation();
+  const isHome = location === "/";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,6 +30,14 @@ export function Navbar() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const LogoContent = () => (
+    <>
+      <span className="font-display font-bold text-xl tracking-tight text-white group-hover:text-primary transition-colors">
+        Neural Learning Hub
+      </span>
+    </>
+  );
 
   return (
     <nav
@@ -35,48 +49,52 @@ export function Navbar() {
       )}
     >
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
-        <ScrollLink 
-          to="hero" 
-          smooth={true} 
+        <Link
+          href="/"
           className="flex items-center gap-2 cursor-pointer group"
+          onClick={(e) => {
+            if (isHome) {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+          }}
         >
-          <div className="p-2 rounded-xl bg-primary/10 group-hover:bg-primary/20 transition-colors">
-            <BrainCircuit className="w-6 h-6 text-primary" />
-          </div>
-          <span className="font-display font-bold text-xl tracking-tight text-white group-hover:text-primary transition-colors">
-            Neural Learning Hub
-          </span>
-        </ScrollLink>
+          <LogoContent />
+        </Link>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-8">
-          {navItems.map((item) => (
-            <ScrollLink
-              key={item.name}
-              to={item.to}
-              smooth={true}
-              offset={-80}
-              className="text-sm font-medium text-muted-foreground hover:text-white cursor-pointer transition-colors relative group"
+        {!hideLinks && (
+          <div className="hidden md:flex items-center gap-8">
+            {navItems.map((item) => (
+              <ScrollLink
+                key={item.name}
+                to={item.to}
+                smooth={true}
+                offset={-80}
+                className="text-sm font-medium text-muted-foreground hover:text-white cursor-pointer transition-colors relative group"
+              >
+                {item.name}
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-secondary transition-all group-hover:w-full" />
+              </ScrollLink>
+            ))}
+            <Button
+              className="bg-primary hover:bg-primary/90 text-white shadow-lg shadow-primary/25 hover:shadow-primary/40 transition-all"
+              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
             >
-              {item.name}
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-secondary transition-all group-hover:w-full" />
-            </ScrollLink>
-          ))}
-          <Button 
-            className="bg-primary hover:bg-primary/90 text-white shadow-lg shadow-primary/25 hover:shadow-primary/40 transition-all"
-            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-          >
-            Get Started
-          </Button>
-        </div>
+              Get Started
+            </Button>
+          </div>
+        )}
 
         {/* Mobile Toggle */}
-        <button
-          className="md:hidden text-white"
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          {isOpen ? <X /> : <Menu />}
-        </button>
+        {!hideLinks && (
+          <button
+            className="md:hidden text-white"
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            {isOpen ? <X /> : <Menu />}
+          </button>
+        )}
       </div>
 
       {/* Mobile Menu */}
