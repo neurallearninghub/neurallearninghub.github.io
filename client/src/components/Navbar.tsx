@@ -33,9 +33,12 @@ export function Navbar({ hideLinks = false }: NavbarProps) {
 
   const LogoContent = () => (
     <>
-      <span className="font-display font-bold text-xl tracking-tight text-white group-hover:text-primary transition-colors">
-        Neural Learning Hub
-      </span>
+      <div className="flex items-center gap-3">
+        <img src="/logo.svg" alt="Logo" className="w-10 h-10" />
+        <span className="font-display font-bold text-xl tracking-tight text-white group-hover:text-primary transition-colors">
+          Neural Learning Hub
+        </span>
+      </div>
     </>
   );
 

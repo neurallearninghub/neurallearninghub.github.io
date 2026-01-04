@@ -19,8 +19,9 @@ export function Footer() {
       <div className="container mx-auto px-4 md:px-6">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           <div className="space-y-4">
-            <div className="flex items-center gap-2">
-              <span className="font-display font-bold text-lg text-white">
+            <div className="flex items-center gap-3">
+              <img src="/logo.svg" alt="Logo" className="w-10 h-10" />
+              <span className="font-display font-bold text-xl text-white">
                 Neural Learning Hub
               </span>
             </div>
