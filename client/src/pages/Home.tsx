@@ -198,12 +198,12 @@ export default function Home() {
                         <FileText className="w-4 h-4" /> Syllabus
                       </Button>
                     </DialogTrigger>
-                    <DialogContent className="max-w-3xl bg-card border-white/10 text-white">
+                    <DialogContent className="max-w-[95vw] md:max-w-3xl max-h-[90vh] overflow-y-auto bg-card border-white/10 text-white">
                       <DialogHeader>
                         <DialogTitle className="text-2xl font-display font-bold text-white mb-4">Curriculum</DialogTitle>
                       </DialogHeader>
-                      <div className="rounded-xl border border-white/10 overflow-hidden">
-                        <Table>
+                      <div className="rounded-xl border border-white/10 overflow-hidden overflow-x-auto">
+                        <Table className="min-w-[600px]">
                           <TableHeader className="bg-white/5">
                             <TableRow className="border-white/10 hover:bg-white/5">
                               <TableHead className="text-primary font-bold">Duration</TableHead>
@@ -238,12 +238,12 @@ export default function Home() {
                         <Calendar className="w-4 h-4" /> Schedule
                       </Button>
                     </DialogTrigger>
-                    <DialogContent className="max-w-2xl bg-card border-white/10 text-white">
+                    <DialogContent className="max-w-[95vw] md:max-w-2xl max-h-[90vh] overflow-y-auto bg-card border-white/10 text-white">
                       <DialogHeader>
                         <DialogTitle className="text-2xl font-display font-bold text-white mb-4">Course Schedule</DialogTitle>
                       </DialogHeader>
-                      <div className="rounded-xl border border-white/10 overflow-hidden">
-                        <Table>
+                      <div className="rounded-xl border border-white/10 overflow-hidden overflow-x-auto">
+                        <Table className="min-w-[500px]">
                           <TableHeader className="bg-white/5">
                             <TableRow className="border-white/10 hover:bg-white/5">
                               <TableHead className="text-primary font-bold">DoW</TableHead>
