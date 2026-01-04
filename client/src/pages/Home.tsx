@@ -16,7 +16,8 @@ import {
   Clock,
   Code2,
   FileText,
-  Calendar
+  Calendar,
+  Globe
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -345,6 +346,14 @@ export default function Home() {
                     className="p-2 rounded-full bg-[#0077b5]/20 text-[#0077b5] hover:bg-[#0077b5]/30 transition-colors"
                   >
                     <Linkedin className="w-4 h-4" />
+                  </a>
+                  <a
+                    href="https://vinayjoshi22.github.io/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors"
+                  >
+                    <Globe className="w-4 h-4" />
                   </a>
                 </div>
                 <p className="text-secondary font-medium mb-4">Principal Scientist at Microsoft</p>
